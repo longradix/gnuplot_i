@@ -23,6 +23,10 @@
 /** Maximum amount of characters of a temporary file name */
 #define GP_TMP_NAME_SIZE 512
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*---------------------------------------------------------------------------
   Gnuplot_i types
  ---------------------------------------------------------------------------*/
@@ -101,5 +105,9 @@ void gnuplot_plot_obj_xy (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void
 void gnuplot_plot_once (char *style, char *label_x, char *label_y, double *x, double *y, int n, char *title);
 void gnuplot_plot_equation (gnuplot_ctrl *handle, char *equation, char *title);
 void gnuplot_hardcopy (gnuplot_ctrl *handle, char *filename, char *color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
