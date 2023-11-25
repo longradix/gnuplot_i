@@ -488,7 +488,7 @@ void gnuplot_i_error (gnuplot_ctrl *handle) {
  */
 /*--------------------------------------------------------------------------*/
 
-void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double *x, double *y, int n, char const* title) {
+void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double const* x, double const* y, int n, char const* title) {
   int tmpfd;
   char name[NAME_SIZE];
   char cmd[GP_CMD_SIZE];
@@ -552,7 +552,7 @@ void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double *x, double *y, int n
  */
 /*--------------------------------------------------------------------------*/
 
-void gnuplot_splot (gnuplot_ctrl *handle, double *x, double *y, double *z, int n, char const* title) {
+void gnuplot_splot (gnuplot_ctrl *handle, double const* x, double const* y, double const* z, int n, char const* title) {
   int tmpfd;
   char name[NAME_SIZE];
   char cmd[GP_CMD_SIZE];
@@ -604,7 +604,7 @@ void gnuplot_splot (gnuplot_ctrl *handle, double *x, double *y, double *z, int n
  */
 /*--------------------------------------------------------------------------*/
 
-void gnuplot_splot_grid (gnuplot_ctrl *handle, double *points, int rows, int cols, char const* title) {
+void gnuplot_splot_grid (gnuplot_ctrl *handle, double const* points, int rows, int cols, char const* title) {
   int tmpfd;
   char name[NAME_SIZE];
   char cmd[GP_CMD_SIZE];
@@ -677,7 +677,7 @@ void gnuplot_splot_grid (gnuplot_ctrl *handle, double *points, int rows, int col
  */
 /*--------------------------------------------------------------------------*/
 
-void gnuplot_contour_plot (gnuplot_ctrl *handle, double *x, double *y, double *z, int nx, int ny, char const* title) {
+void gnuplot_contour_plot (gnuplot_ctrl *handle, double const* x, double const* y, double const* z, int nx, int ny, char const* title) {
   int tmpfd;
   char name[NAME_SIZE];
   char cmd[GP_CMD_SIZE];
@@ -870,7 +870,7 @@ void gnuplot_plot_obj_xy (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void
  */
 /*--------------------------------------------------------------------------*/
 
-void gnuplot_plot_once (char const* style, char const* label_x, char const* label_y, double *x, double *y, int n, char const* title) {
+void gnuplot_plot_once (char const* style, char const* label_x, char const* label_y, double const* x, double const* y, int n, char const* title) {
   /* Define handle as local variable to isolate it from other gnuplot sessions */
   gnuplot_ctrl *handle;
 
