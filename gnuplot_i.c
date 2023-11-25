@@ -489,7 +489,6 @@ void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double *x, double *y, int n
 
   /* Error handling: mandatory arguments, already open session, opening temporary file */
   FAIL_IF (x == NULL || (n < 1), "One of the parameters to gnuplot_plot_coordinates() has been misspecified");
-  gnuplot_i_error(handle);
 
   /* Open temporary file for output */
   sprintf(name, GNUPLOT_TEMPFILE, P_tmpdir);
@@ -820,7 +819,6 @@ void gnuplot_plot_obj_xy (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void
 
   /* Error handling: mandatory arguments, already open session, opening temporary file */
   FAIL_IF (getPoint == NULL || (n < 1), "One of the parameters to gnuplot_plot_obj_xy() has been misspecified");
-  gnuplot_i_error(handle);
 
   /* Open temporary file for output */
   sprintf(name, GNUPLOT_TEMPFILE, P_tmpdir);
