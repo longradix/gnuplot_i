@@ -349,6 +349,12 @@ void gnuplot_setstyle (gnuplot_ctrl *handle, char const* plot_style) {
   return;
 }
 
+void gnuplot_append_style (gnuplot_ctrl *handle, char const* plot_style) {
+  int len = strlen(handle->pstyle);
+  strncpy(handle->pstyle + len, plot_style, sizeof(handle->pstyle) - len - 1);
+  return;
+}
+
 /*-------------------------------------------------------------------------*/
 /**
   @brief    Change the terminal of a gnuplot session.

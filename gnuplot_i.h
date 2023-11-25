@@ -51,7 +51,7 @@ extern "C" {
 typedef struct _GNUPLOT_CTRL_ {
   FILE *gnucmd;       /*!< Pipe to gnuplot process. */
   int nplots;         /*!< Number of currently active plots. */
-  char pstyle[32];    /*!< Current plotting style. */
+  char pstyle[256];   /*!< Current plotting style. */
   char term[32];      /*!< Save terminal name, used by `gnuplot_hardcopy()` function. */
   char to_delete[GP_MAX_TMP_FILES][GP_TMP_NAME_SIZE];   /*!< Names of temporary files. */
   int ntmp;           /*!< Number of temporary files in the current session. */
@@ -90,6 +90,7 @@ gnuplot_ctrl *gnuplot_init (void);
 void gnuplot_close (gnuplot_ctrl *handle);
 void gnuplot_cmd (gnuplot_ctrl *handle, char const* cmd, ...);
 void gnuplot_setstyle (gnuplot_ctrl *handle, char const* plot_style);
+void gnuplot_append_style (gnuplot_ctrl *handle, char const* plot_style);
 void gnuplot_setterm (gnuplot_ctrl *handle, char const* terminal, int width, int height);
 void gnuplot_set_axislabel (gnuplot_ctrl *handle, char const* axis, char const* label);
 void gnuplot_resetplot (gnuplot_ctrl *handle);
