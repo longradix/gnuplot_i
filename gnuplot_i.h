@@ -81,30 +81,30 @@ typedef struct _GNUPLOT_POINT_ {
 
 /* Auxiliary functions */
 
-char *gnuplot_get_program_path (char *pname);
+char const* gnuplot_get_program_path (char const* pname);
 void print_gnuplot_handle (gnuplot_ctrl *handle);
 
 /* Gnuplot interface handling functions */
 
 gnuplot_ctrl *gnuplot_init (void);
 void gnuplot_close (gnuplot_ctrl *handle);
-void gnuplot_cmd (gnuplot_ctrl *handle, char *cmd, ...);
-void gnuplot_setstyle (gnuplot_ctrl *handle, char *plot_style);
-void gnuplot_setterm (gnuplot_ctrl *handle, char *terminal, int width, int height);
-void gnuplot_set_axislabel (gnuplot_ctrl *handle, char *axis, char *label);
+void gnuplot_cmd (gnuplot_ctrl *handle, char const* cmd, ...);
+void gnuplot_setstyle (gnuplot_ctrl *handle, char const* plot_style);
+void gnuplot_setterm (gnuplot_ctrl *handle, char const* terminal, int width, int height);
+void gnuplot_set_axislabel (gnuplot_ctrl *handle, char const* axis, char const* label);
 void gnuplot_resetplot (gnuplot_ctrl *handle);
 
 /* Gnuplot interface plotting functions */
 
-void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double *x, double *y, int n, char *title);
-void gnuplot_splot (gnuplot_ctrl *handle, double *x, double *y, double *z, int n, char *title);
-void gnuplot_splot_grid (gnuplot_ctrl *handle, double *points, int rows, int cols, char *title);
-void gnuplot_contour_plot (gnuplot_ctrl *handle, double *x, double *y, double *z, int nx, int ny, char *title);
-void gnuplot_splot_obj (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void *, gnuplot_point *, int, int), int n, char *title);
-void gnuplot_plot_obj_xy (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void *, gnuplot_point *, int, int), int n, char *title);
-void gnuplot_plot_once (char *style, char *label_x, char *label_y, double *x, double *y, int n, char *title);
-void gnuplot_plot_equation (gnuplot_ctrl *handle, char *equation, char *title);
-void gnuplot_hardcopy (gnuplot_ctrl *handle, char *filename, char *color);
+void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double *x, double *y, int n, char const* title);
+void gnuplot_splot (gnuplot_ctrl *handle, double *x, double *y, double *z, int n, char const* title);
+void gnuplot_splot_grid (gnuplot_ctrl *handle, double *points, int rows, int cols, char const* title);
+void gnuplot_contour_plot (gnuplot_ctrl *handle, double *x, double *y, double *z, int nx, int ny, char const* title);
+void gnuplot_splot_obj (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void *, gnuplot_point *, int, int), int n, char const* title);
+void gnuplot_plot_obj_xy (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void *, gnuplot_point *, int, int), int n, char const* title);
+void gnuplot_plot_once (char const* style, char const* label_x, char const* label_y, double *x, double *y, int n, char const* title);
+void gnuplot_plot_equation (gnuplot_ctrl *handle, char const* equation, char const* title);
+void gnuplot_hardcopy (gnuplot_ctrl *handle, char const* filename, char const* color);
 
 #ifdef __cplusplus
 }

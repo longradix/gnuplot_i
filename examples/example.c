@@ -174,7 +174,7 @@ int main(int argc, char *argv[]) {
   h3 = gnuplot_init();
   gnuplot_setstyle(h3, "filledcurves");
   printf("window 1: x*sin(x)\n");
-  gnuplot_cmd(h1, "set linecolor rgb 'blue'");   // this does not work yet
+  gnuplot_cmd(h1, "set style line 1 lc rgb 'blue'");    // Still not working, but doesn't print an error anymore.
   gnuplot_plot_equation(h1, "x*sin(x)", "x*sin(x)");
   sleep(SECONDS);
   printf("window 2: log(x)/x\n");
