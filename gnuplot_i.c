@@ -506,7 +506,7 @@ void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double const* x, double con
 
   /* Write data to this file */
   for (int i = 0; i < n; i++) {
-    (y == NULL || memcmp(y, y+1, (sizeof(y)-1)*sizeof(y[0])) == 0) ? sprintf(cmd, "%g\n", x[i]) : sprintf(cmd, "%g %g\n", x[i], y[i]);
+    (y == NULL) ? sprintf(cmd, "%g\n", x[i]) : sprintf(cmd, "%g %g\n", x[i], y[i]);
     write(tmpfd, cmd, strlen(cmd));
   }
   close(tmpfd);
