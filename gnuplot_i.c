@@ -310,6 +310,26 @@ void gnuplot_cmd (gnuplot_ctrl *handle, char const* cmd, ...) {
   return;
 }
 
+void send_plot_cmd(gnuplot_ctrl* handle, char* cmd, char const* name, char const* title)
+{
+  char const* command = (handle->nplots > 0) ? "replot" : "plot";
+  if (title)
+    sprintf(cmd, "%s \"%s\" title \"%s\" with %s", command, name, title, handle->pstyle);
+  else
+    sprintf(cmd, "%s \"%s\" notitle with %s", command, name, handle->pstyle);
+  gnuplot_cmd(handle, cmd);
+}
+
+void send_splot_cmd(gnuplot_ctrl* handle, char* cmd, char const* name, char const* title)
+{
+  char const* command = "splot";
+  if (title)
+    sprintf(cmd, "%s \"%s\" title \"%s\" with %s", command, name, title, handle->pstyle);
+  else
+    sprintf(cmd, "%s \"%s\" notitle with %s", command, name, handle->pstyle);
+  gnuplot_cmd(handle, cmd);
+}
+
 /*-------------------------------------------------------------------------*/
 /**
   @brief    Change the plotting style of a gnuplot session.
@@ -512,8 +532,7 @@ void gnuplot_plot_coordinates (gnuplot_ctrl *handle, double const* x, double con
   close(tmpfd);
 
   /* Command to be sent to gnuplot */
-  sprintf(cmd, "%s \"%s\" title \"%s\" with %s", (handle->nplots > 0) ? "replot" : "plot", name, (title) ? title : "No title" , handle->pstyle);
-  gnuplot_cmd(handle, cmd);
+  send_plot_cmd(handle, cmd, name, title);
   handle->nplots++;
 }
 
@@ -577,8 +596,7 @@ void gnuplot_splot (gnuplot_ctrl *handle, double const* x, double const* y, doub
   close(tmpfd);
 
   /* Command to be sent to gnuplot */
-  sprintf(cmd, "splot \"%s\" title \"%s\" with %s", name, (title) ? title : "No title", handle->pstyle);
-  gnuplot_cmd(handle, cmd);
+  send_splot_cmd(handle, cmd, name, title);
   handle->nplots++;
 }
 
@@ -633,8 +651,7 @@ void gnuplot_splot_grid (gnuplot_ctrl *handle, double const* points, int rows, i
   close(tmpfd);
 
   /* Command to be sent to gnuplot */
-  sprintf(cmd, "splot \"%s\" title \"%s\" with %s", name, (title) ? title : "No title", handle->pstyle);
-  gnuplot_cmd(handle, cmd);
+  send_splot_cmd(handle, cmd, name, title);
   handle->nplots++;
 }
 
@@ -712,8 +729,7 @@ void gnuplot_contour_plot (gnuplot_ctrl *handle, double const* x, double const* 
   gnuplot_cmd(handle, "set view 0,0");
 
   /* Command to be sent to gnuplot */
-  sprintf(cmd, "splot \"%s\" title \"%s\" with %s", name, (title) ? title : "No title", handle->pstyle);
-  gnuplot_cmd(handle, cmd);
+  send_splot_cmd(handle, cmd, name, title);
   handle->nplots++;
 }
 
@@ -765,8 +781,7 @@ void gnuplot_splot_obj (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void *
   close(tmpfd);
 
   /* Command to be sent to gnuplot */
-  sprintf(cmd, "splot \"%s\" title \"%s\" with %s", name, (title) ? title : "No title", handle->pstyle);
-  gnuplot_cmd(handle, cmd);
+  send_splot_cmd(handle, cmd, name, title);
   handle->nplots++;
 }
 
@@ -844,8 +859,7 @@ void gnuplot_plot_obj_xy (gnuplot_ctrl *handle, void *obj, void (*getPoint)(void
   close(tmpfd);
 
   /* Command to be sent to gnuplot */
-  sprintf(cmd, "%s \"%s\" title \"%s\" with %s", (handle->nplots > 0) ? "replot" : "plot", name, (title) ? title : "No title", handle->pstyle);
-  gnuplot_cmd(handle, cmd);
+  send_plot_cmd(handle, cmd, name, title);
   handle->nplots++;
 }
 
@@ -916,7 +930,11 @@ void gnuplot_plot_once (char const* style, char const* label_x, char const* labe
 void gnuplot_plot_equation (gnuplot_ctrl *handle, char const* equation, char const* title) {
   char cmd[GP_CMD_SIZE];
 
-  sprintf(cmd, "%s %s title \"%s\" with %s", (handle->nplots > 0) ? "replot" : "plot", equation, (title) ? title : "No title", handle->pstyle);
+  char const* command = (handle->nplots > 0) ? "replot" : "plot";
+  if (title)
+    sprintf(cmd, "%s %s title \"%s\" with %s", command, equation, title, handle->pstyle);
+  else
+    sprintf(cmd, "%s %s notitle with %s", command, equation, handle->pstyle);
   gnuplot_cmd(handle, cmd);
   handle->nplots++;
 }
